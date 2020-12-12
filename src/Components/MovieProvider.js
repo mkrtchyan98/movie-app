@@ -1,50 +1,24 @@
 import React, { useState } from 'react';
+import Pagination from '@material-ui/lab/Pagination';
+
 import  useFetch  from '../utils/useFetch';
 import { sortAlphaNum } from '../utils/sortAlphaNum';
 import MovieCard from './MovieCard';
-import Pagination from '@material-ui/lab/Pagination';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme =>({
-  root: {
-    "& .gallery": {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-},
- '& h1':{
-    fontSize: '50px',
-    color: 'red',
-    textAlign: 'center',
-},
-'& .MuiPagination-ul': {
-  justifyContent: 'center',
-  backgroundColor: '#3c1e1e',
-},
-'& .MuiPaginationItem-page:hover':{
-  backgroundColor:'rgba(240, 214, 3, 0.04)',
-},
-'& .MuiPaginationItem-sizeLarge':{
-  fontSize:'1.025rem',
-}
-}
-
-}));
-
+import { useStyles } from "./styles/MovieProviderStyle";
 
 const MovieProvider = (props) => {
   const classes = useStyles();
-  const MOVIE_API_URL = "https://raw.githubusercontent.com/StreamCo/react-coding-challenge/master/feed/sample.json"; 
+  const MOVIE_API_URL = process.env.REACT_APP_API_URL;
   const itemsPerPage = 10;
   const {status, data, error} = useFetch(MOVIE_API_URL);
   const [page, setPage] = useState(1);
   const [programType, setProgramType] = useState(props.programType);
   
-  function handleChange(event, value) {
+  const handleChange = (event, value) => {
     setPage(value);
   };
 
-  function filterJson(movie) {
+  const filterJson = (movie)  =>{
      return  movie.programType === `${programType}` && movie.releaseYear >= 2010
   }
 

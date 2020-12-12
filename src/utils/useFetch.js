@@ -1,7 +1,5 @@
 import { useEffect, useReducer } from 'react';
 
-
-
  const useFetch = (url) => {
     const initialState = {
         status: 'loading',
@@ -40,7 +38,6 @@ import { useEffect, useReducer } from 'react';
                     dispatch({ type: 'ERROR', payload: error.message });
                  }
                 }
-            
         };
 
         fetchData();
