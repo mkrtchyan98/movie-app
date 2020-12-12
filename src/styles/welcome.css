@@ -1,0 +1,65 @@
+p {
+  color: #fff;
+  font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+}
+p span {
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 500;
+}
+p span::before,
+p span::after {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  transform-origin: left top;
+  transition: all ease-out 0.3s;
+  content: attr(data-text);
+}
+p span::before {
+  z-index: 1;
+  color: white;
+
+}
+p span::after {
+  z-index: 2;
+  color: black;
+  transform: rotateY(-40deg);
+  text-shadow: -1px 0 1px #684da3, 1px 0 1px rgba(0,0,0,0.8);
+
+}
+
+p span:hover::after {
+  transform: rotateY(-10deg);
+}
+p span + span {
+  margin-left: 0.3em;
+}
+@media only screen and (min-width: 20em) {
+  p {
+    font-size: 3em;
+  }
+  p span::before,
+  p span::after {
+    display: block;
+  }
+}
+@media only  screen and (min-width: 30em) {
+  p {
+    font-size: 3em;
+  }
+}
+@media only  screen and (min-width: 40em) {
+  p {
+    font-size: 5em;
+  }
+}
+@media only  screen and (min-width: 60em) {
+  p {
+    font-size: 8em;
+  }
+}
